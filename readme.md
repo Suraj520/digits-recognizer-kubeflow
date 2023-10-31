@@ -29,6 +29,18 @@ The [MNIST database of handwritten digits](http://yann.lecun.com/exdb/mnist/) is
 
 Install Kubeflow on your Kubernetes cluster. You can find more information in the [Kubeflow docs](https://www.kubeflow.org/docs/started/installing-kubeflow/).
 
+- Install [lstio](https://istio.io/latest/docs/setup/getting-started/) as it won't be installed by default.
+- Execute the following commands
+  ```$curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.19.3 TARGET_ARCH=x86_64 sh -```
+  ```cd istio-1.19.3```
+  ```$ nano .bashrc```
+  ```export PATH=$PWD/bin:$PATH #add the following to it, make sure to replace PWD by original path```
+  ```$ source .bashrc```
+  - Install lstio by executing the following command
+    ```istioctl install --set profile=demo -y```
+  - Add namespace label
+    ```kubectl label namespace default istio-injection=enabled```
+
 You can check with kubectl if all pods are coming up successfully: 
 
 ```
